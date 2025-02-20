@@ -22,11 +22,9 @@ jobs:
 
       - name: Install dependencies
         run: |
-          install.packages("shiny")
-          install.packages("testthat")
+          R -e "install.packages('shiny')"
+          R -e "install.packages('testthat')"
 
-      - name: Run tests
+      - name: Run Shiny app
         run: |
-          # You can write tests if you want to
-          # For now, we're just running the app to check if it's working
-          Rscript -e "shiny::runApp()"
+          R -e "shiny::runApp('app.R', launch.browser = FALSE)"
