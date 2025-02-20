@@ -28,3 +28,7 @@ jobs:
       - name: Run Shiny app
         run: |
           R -e "shiny::runApp('app.R', launch.browser = FALSE)"
+      - name: Stop Shiny app #Kill the R process running the Shiny App
+        run: |
+          pkill -f "R -e shiny::runApp"
+          echo "Shiny app stopped."
