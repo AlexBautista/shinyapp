@@ -1,0 +1,32 @@
+name: R-CMD-check
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Test Shiny App
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+
+      - name: Install dependencies
+        run: |
+          install.packages("shiny")
+          install.packages("testthat")
+
+      - name: Run tests
+        run: |
+          # You can write tests if you want to
+          # For now, we're just running the app to check if it's working
+          Rscript -e "shiny::runApp()"
